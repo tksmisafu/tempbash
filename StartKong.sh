@@ -15,4 +15,18 @@ docker run -d --name kong-gateway \
   -p 127.0.0.1:8444:8444 \
   kong:v2.6
 
-# -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
+
+docker run -d --name kong-admin \
+  --network=kong-net \
+  -e "HOST=0.0.0.0" \
+  -e "PORT=1337" \
+  -e "NODE_ENV=production" \
+  -e "DB_ADAPTER=postgres" \
+  -e "DB_HOST=postgres11" \
+  -e "DB_PORT=5432" \
+  -e "DB_DATABASE=kongadmin" \
+  -e "DB_USER=kong" \
+  -e "DB_PASSWORD=45q8tvhy11" \
+  -p 1337:1337 \
+  pantsel/konga:0.14.9
+
