@@ -24,22 +24,4 @@ docker run --rm --network=kong-net \
   kong:v2.6 kong migrations bootstrap
 
 
-## Start Kong Gateway
-docker run -d --name kong-gateway \
-  --network=kong-net \
-  -e "KONG_DATABASE=postgres" \
-  -e "KONG_PG_HOST={PG_HOST_NAME}" \
-  -e "KONG_PG_USER={PG_USER_NAME}" \
-  -e "KONG_PG_PASSWORD=kong" \
-  -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-  -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-  -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
-  -p 8000:8000 \
-  -p 8443:8443 \
-  -p 127.0.0.1:8001:8001 \
-  -p 127.0.0.1:8444:8444 \
-  kong:latest
- 
+
