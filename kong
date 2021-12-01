@@ -1,25 +1,25 @@
 #
-docker pull kong:2.6.0-alpine
-docker tag kong:2.6.0-alpine kong:v2.6
+#docker pull kong:2.6.0-alpine
+#docker tag kong:2.6.0-alpine kong:v2.6
 
 
 # Prepare the database
-docker network create kong-net
+#docker network create kong-net
 
 ## Start a PostgreSQL container
-docker run -d --name postgres11 \
-  --network=kong-net \
-  -p 5430:5432 \
-  -e "POSTGRES_USER=postgres" \
-  -e "POSTGRES_DB=postgres" \
-  -e "POSTGRES_PASSWORD=45q8tvhy" \
-  postgres:11
+#docker run -d --name postgres11 \
+#  --network=kong-net \
+#  -p 5430:5432 \
+#  -e "POSTGRES_USER=postgres" \
+#  -e "POSTGRES_DB=postgres" \
+#  -e "POSTGRES_PASSWORD=45q8tvhy" \
+#  postgres:11
 
 ## Prepare the Kong database:
 docker run --rm --network=kong-net \
-  -e "KONG_DATABASE=kong" \
+  -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=postgres11" \
-  -e "KONG_PG_PORT=5430" \
+  -e "KONG_PG_PORT=5432" \
   -e "KONG_PG_PASSWORD=45q8tvhy11" \
   -e "KONG_PASSWORD=45q8tvhy" \
   kong:v2.6 kong migrations bootstrap
