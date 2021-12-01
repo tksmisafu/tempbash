@@ -1,0 +1,28 @@
+version: "3.1"
+
+secrets:
+  konga_user_seed:
+    external: true
+
+services:
+  konga:
+    image: pantsel/konga
+    secrets:
+     - konga_user_seed
+    network: host
+    environment:
+      - KONGA_SEED_USER_DATA_SOURCE_FILE=/run/secrets/konga_user_seed
+      - HOST=0.0.0.0
+      - PORT=1337
+      - NODE_ENV=production
+      - DB_ADAPTER=postgres
+      - DB_HOST=postgres11
+      - DB_PORT=5432
+      - DB_DATABASE=kongadmin
+      - DB_USER=kong
+      - DB_PASSWORD=45q8tvhy11
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+     - 1337:1337
