@@ -1,9 +1,9 @@
 docker run -d --name {GATEWAY_CONTAINER_NAME} \
   --network={NETWORK_NAME} \
-  -e "KONG_DATABASE=postgres" \
-  -e "KONG_PG_HOST={PG_HOST_NAME}" \
-  -e "KONG_PG_USER={PG_USER_NAME}" \
-  -e "KONG_PG_PASSWORD=kong" \
+  -e "KONG_DATABASE=kong" \
+  -e "KONG_PG_HOST=postgres11" \
+  -e "KONG_PG_USER=postgres" \
+  -e "KONG_PG_PASSWORD=45q8tvhy11" \
   -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
   -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
   -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
