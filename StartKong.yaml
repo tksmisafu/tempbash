@@ -1,10 +1,9 @@
-docker run -d --name {GATEWAY_CONTAINER_NAME} \
-  --network={NETWORK_NAME} \
-  -e "KONG_DATABASE=kong" \
+docker run -d --name kong-gateway \
+  --network=kong-net \
+  -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=postgres11" \
-  -e "KONG_PG_USER=postgres" \
+  -e "KONG_PG_USER=kong" \
   -e "KONG_PG_PASSWORD=45q8tvhy11" \
-  -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
   -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
   -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
@@ -14,4 +13,6 @@ docker run -d --name {GATEWAY_CONTAINER_NAME} \
   -p 8443:8443 \
   -p 127.0.0.1:8001:8001 \
   -p 127.0.0.1:8444:8444 \
-  kong:latest
+  kong:v2.6
+
+# -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
