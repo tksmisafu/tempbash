@@ -9,6 +9,7 @@ services:
     image: pantsel/konga
     secrets:
      - konga_user_seed
+    network_mode: "host"
     environment:
       - KONGA_SEED_USER_DATA_SOURCE_FILE=/run/secrets/konga_user_seed
       - HOST=0.0.0.0
@@ -25,4 +26,4 @@ services:
         condition: on-failure
     ports:
      - 1337:1337
-networks: host
+
