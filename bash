@@ -15,3 +15,11 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
+
+
+docker pull kong:2.6.0-alpine
+docker tag kong:2.6.0-alpine kong:v2.6
+
+
+# Prepare the container network
+docker network create kong-net
